@@ -1,0 +1,29 @@
+{
+  "name": "placement-cell",
+  "version": "1.0.0",
+  "description": "A company constantly needs to download their data to compile different reports. You need to create an interface for the employees of this company to fill in the data into the database and then download it in CSV format.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Pushkar808/Placement-Cell.git"
+  },
+  "author": "Pushkar Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Pushkar808/Placement-Cell/issues"
+  },
+  "homepage": "https://github.com/Pushkar808/Placement-Cell#readme",
+  "dependencies": {
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.8",
+    "ejs-layouts": "^0.0.1",
+    "express": "^4.18.2",
+    "express-ejs-layouts": "^2.5.1",
+    "mongoose": "^6.6.5",
+    "nodemon": "^2.0.20",
+    "passport": "^0.6.0"
+  }
+}

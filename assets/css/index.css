@@ -1,0 +1,10 @@
+#add_student_container{
+    background-color:#76a9f7;
+    position: fixed;
+    bottom: 10;
+    right: 10;
+    border-radius:50%;
+    font-size:30px;
+    padding:10px;
+    color: #000;
+}

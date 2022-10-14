@@ -1,13 +1,11 @@
-
 <div class="container-fluid" style="margin-top:100px" id="students-list">
     <h1> Students List</h1>
     <div class="list-group">
         <% for(student in studentData){ %>
             <button type="button" class="list-group-item list-group-item-action">
-                <%= student %>
+                <%= studentData[student].name %>
             </button>    
         <% } %>
-        
     </div>
 </div>
 <!-- this is the add student form which will be hidden intially  -->

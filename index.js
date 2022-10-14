@@ -1,8 +1,8 @@
 const express = require('express');
 const path = require('path');
+const ejs=require('ejs')
 const expressLayouts = require('express-ejs-layouts');//express ejs layouts
 const DB=require('./config/dbconfig');//DB configuration to connect to database
-
 
 // const session = require('express-session');
 // const passport = require('passport');
@@ -14,6 +14,7 @@ const DB=require('./config/dbconfig');//DB configuration to connect to database
 const port = 8000;//port for server
 const app = express();
 
+app.use(express.urlencoded())
 //setting template engine
 app.set('view engine', 'ejs');
 //setting where to find views for ejs

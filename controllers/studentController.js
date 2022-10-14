@@ -1,6 +1,6 @@
 const studentSchema = require('../models/student')//student schema
 
-
+console.log("AT CONTROLELR")
 //module to add student to DB
 module.exports.addStudent = (req, res) => {
     //inserting data to student DB
@@ -24,11 +24,5 @@ module.exports.addStudent = (req, res) => {
 
 
 module.exports.student=(req,res)=>{
-    studentSchema.find({},(err,studentdata)=>{
-        if (err) {
-            console.log("Some error occured while fetching data for student: " + err);
-            return;
-        }
-        console.log(studentdata);
-    })
+    res.render('student_list')
 }

@@ -6,7 +6,6 @@ module.exports.index = (req, res) => {
             console.log("Some error occured while fetching data for student: " + err);
             return;
         }
-        console.log(studentdata);
         res.render('index', {
             studentData: studentdata
         })

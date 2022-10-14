@@ -8,3 +8,7 @@
     padding:10px;
     color: #000;
 }
+#add_student_form{
+    padding:20px;
+    display:none;
+}

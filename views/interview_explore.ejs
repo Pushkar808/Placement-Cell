@@ -20,16 +20,46 @@
         </blockquote>
     </div>
 </div>
-<div class="container">
+<div class="container-fluid">
     <div><h2>Students Mapped: </h2></div>
     <div class="row"> 
-        <% if(data.student_mapped.length==0) { %> <p>NO student mapped  </p> <%  }else{ %>
-            <% for(let i=0;i<data.student_mapped.length;i++){ %>
-                <%= data.student_mapped[i] %>    
-            <% } %>
-        <% } %>
+        <table class="table">
+            <thead>
+                <tr>
+                  <th scope="col">Student Name</th>
+                  <th scope="col">DSA Score</th>
+                  <th scope="col">Web-D Score</th>
+                  <th scope="col">React Score</th>
+                  <th scope="col">Pass</th>
+                  <th scope="col">Fail</th>
+                  <th scope="col">Hold</th>
+                  <th scope="col">Not Attemt</th>
+                  <th scope="col"></th>
+
+                  
+                </tr>
+              </thead>
+            <tbody>
+               
+                    <% if(data.student_mapped.length==0) { %> <p>NO student mapped  </p> <%  }else{ %>
+                        <% for(let i=0;i<data.student_mapped.length;i++){ %>
+                            <tr>    
+                                <td>  <%= data.student_mapped[i].name %> </td>  
+                                <td>  <%= data.student_mapped[i].dsa_score %> </td>
+                                <td>  <%= data.student_mapped[i].webd_score %> </td>   
+                                <td>  <%= data.student_mapped[i].react_score %> </td>
+                                <form action="/student/result?sid=<%= data.student_mapped[i].id %>&jid=<%= data.id %>" method="POST">
+                                    <td><input type="radio" class="btn btn-outline-secondary" type="" name="result" value="Pass" required>Pass</td>
+                                    <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="Fail" required>Fail</td>
+                                    <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="On hold" required>On hold</td>
+                                    <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="NA" required>N.A</td>
+                                    <td><input type="submit" class="btn btn-primary"></td>
+                                </form>
+                            </tr>
+                        <% } %>
+                    <% } %> 
+               
+            </tbody>
+        </table>
     </div>
-    
-    
-    <%= data %>
 </div>

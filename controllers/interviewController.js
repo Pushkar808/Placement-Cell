@@ -1,5 +1,5 @@
 const interviewSchema = require('../models/interview')
-
+const ResultSchema=require('../models/results');
 module.exports.addInterview = (req, res) => {
     interviewSchema.create({//get all data from body as method is post
         title: req.body.title,

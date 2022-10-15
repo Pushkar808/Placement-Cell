@@ -1,0 +1,35 @@
+<ul class="nav">
+    <li class="nav-item">
+        <a class="nav-link active" href="/">Back</a>
+    </li>
+</ul>
+
+<div class="card">
+    <div class="card-header">
+        <h1>
+            <%= data.title %>
+        </h1>
+    </div>
+    <div class="card-body">
+        <blockquote class="blockquote mb-0">
+            <% if(!data.description) { %>
+                <p>No Description</p>
+                <% }else{ %>
+                    <%= data.description %>
+                        <% } %>
+        </blockquote>
+    </div>
+</div>
+<div class="container">
+    <div><h2>Students Mapped: </h2></div>
+    <div class="row"> 
+        <% if(data.student_mapped.length==0) { %> <p>NO student mapped  </p> <%  }else{ %>
+            <% for(let i=0;i<data.student_mapped.length;i++){ %>
+                <%= data.student_mapped[i] %>    
+            <% } %>
+        <% } %>
+    </div>
+    
+    
+    <%= data %>
+</div>

@@ -11,6 +11,15 @@ module.exports.addInterview = (req, res) => {
             console.log("Some error occured while putting data for student: " + err);
             return;
         }
-        res.render('index');//so that the whole page will be refreshed
+        res.redirect('back');
     });
+}
+
+module.exports.showInterview=(req,res)=>{
+    interviewSchema.findById(req.query.number).populate('student_mapped').exec((err,data)=>{
+        console.log(data);
+        res.render('interview_explore',{
+            data:data
+        })
+    })
 }

@@ -30,3 +30,10 @@ textarea{
     color:#ffffff;
     border-radius:5px;
 }
+/* styling for list elements for interview */
+.interview-list-description{
+    color:#778899;
+}
+.interview-list-date{
+    color:#565b5f;
+}

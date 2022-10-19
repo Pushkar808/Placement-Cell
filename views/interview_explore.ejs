@@ -4,6 +4,8 @@
     </li>
 </ul>
 
+
+<!-- setting interview title and description in card -->
 <div class="card">
     <div class="card-header">
         <h1>
@@ -35,13 +37,13 @@
                   <th scope="col">Hold</th>
                   <th scope="col">Not Attemt</th>
                   <th scope="col"></th>
-
-                  
                 </tr>
               </thead>
             <tbody>
-               
-                    <% if(data.student_mapped.length==0) { %> <p>NO student mapped  </p> <%  }else{ %>
+               <!-- if there is no data i.e no student was mapped -->
+                    <% if(data.student_mapped.length==0) { %> 
+                        <p>NO student mapped  </p> 
+                    <%  }else{ %>
                         <% for(let i=0;i<data.student_mapped.length;i++){ %>
                             <tr>    
                                 <td>  <%= data.student_mapped[i].name %> </td>  
@@ -49,10 +51,24 @@
                                 <td>  <%= data.student_mapped[i].webd_score %> </td>   
                                 <td>  <%= data.student_mapped[i].react_score %> </td>
                                 <form action="/student/result?sid=<%= data.student_mapped[i].id %>&jid=<%= data.id %>" method="POST">
-                                    <td><input type="radio" class="btn btn-outline-secondary" type="" name="result" value="Pass" required>Pass</td>
-                                    <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="Fail" required>Fail</td>
-                                    <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="On hold" required>On hold</td>
-                                    <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="NA" required>N.A</td>
+                                    <!-- here checking the radio if data is Pass,fail,on hold or na only else show unchecked -->
+                                        <% if( result[i].result=="Pass" ){ %> 
+                                            <td><input type="radio" class="btn btn-outline-secondary" type="" name="result" value="Pass" required checked>Pass</td>
+                                        <% }else{ %>
+                                            <td><input type="radio" class="btn btn-outline-secondary" type="" name="result" value="Pass" required>Pass</td>
+                                        <% } if(result[i].result=="Fail"){ %> 
+                                            <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="Fail" required checked>Fail</td>  
+                                        <% } else{ %>
+                                            <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="Fail" required>Fail</td>  
+                                        <% } if(result[i].result=="On hold"){ %> 
+                                        <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="On hold" required checked>On hold</td>
+                                        <% } else{ %>
+                                            <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="On hold" required>On hold</td>
+                                        <% } if(result[i].result=="NA"){ %> 
+                                            <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="NA" required checked>N.A</td>
+                                        <% }else{ %>
+                                            <td><input type="radio" class="btn btn-outline-secondary" type=""  name="result" value="NA" required>N.A</td>
+                                        <% } %>
                                     <td><input type="submit" class="btn btn-primary"></td>
                                 </form>
                             </tr>

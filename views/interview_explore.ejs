@@ -10,6 +10,7 @@
     <div class="card-header">
         <h1>
             <%= data.title %>
+            
         </h1>
     </div>
     <div class="card-body">
@@ -22,9 +23,40 @@
         </blockquote>
     </div>
 </div>
-<div class="container-fluid">
-    <div><h2>Students Mapped: </h2></div>
+      
     <div class="row"> 
+        <div class="container-fluid">
+            <div><h2>Students Mapped: </h2></div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                  <div class="form-check">
+                    <a id="showlist">Map Students</a>
+                  </div>
+                </div>
+              </div>
+          
+              <!--Student list to map students intially hidden-->
+              <div class="container" id="students-interview-list">
+                <h4>Select Students to be mapped to this interview</h4>
+                <form action="/student/map" method="POST">
+                    <input type="hidden" name="inter_id" value="<%= data.id %>">
+                <% for(student in studentData){ %>
+                    
+                  <div class="list-group">
+                    <div class="list-group-item list-group-item-action">
+                      <span name>
+                        <%= studentData[student].name %>
+                      </span>
+                      <div id="map-student-checkbox">
+                        <input type="checkbox" name="student_list" value="<%= studentData[student]._id %>">
+                      </div>
+                    </div>
+                  </div>
+                  <% } %>
+                  <input type="submit" value="Map Student">
+                </form>
+              </div>
+        
         <table class="table">
             <thead>
                 <tr>

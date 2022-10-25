@@ -11,10 +11,10 @@ textarea{
     border-radius:50%;
     font-size:30px;
     padding:10px;
-    z-index: 1;
+    z-index: 5;
     color: #000;
 }
-#add_student_form,#students-interview-list{
+#add_student_form,#add_interview_form,#students-interview-list{
     padding:20px;
     display:none;
 }

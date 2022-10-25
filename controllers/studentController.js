@@ -54,20 +54,9 @@ async function createResult(sid, iid) {//function to create new entry for the re
 
 async function updateInterview(iid, sid) {//function to update the interview model
     console.log(sid + "" + iid);
-    // await interviewSchema.findOneAndUpdate(
-    //     { _id: iid},
-    //     { "$push": { student_mapped: sid } },
-    //     (err, res) => {
-    //         if (err)
-    //             console.log(err);
-    //         console.log(res);
-    //     }).clone();
-
     const doc = await interviewSchema.findOne({ _id: iid })
-
-    // Append items to `friends`
+    // Append items to student_mapped
     doc.student_mapped.push(sid)
-
     // Update document
     await doc.save()
     return;
@@ -95,3 +84,17 @@ module.exports.map = async (req, res) => {
     }
     res.redirect('back')
 }
+
+module.exports.showstudent = async (req, res) => {
+    const student_id = req.query.sid;
+    console.log(student_id)
+    const data = await ResultSchema.find({ student_id: student_id });
+    await studentSchema.findById(student_id, (err, sdata) => {
+        res.render('student_explore', {
+            data: data,
+            StudentData: sdata
+        })
+    }).clone();
+
+}
+

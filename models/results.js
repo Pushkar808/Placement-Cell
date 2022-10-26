@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
 const resultSchema = mongoose.Schema({//structure for student db schema
     student_id: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Student',
         required: true
     },
     interview_id: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         ref: 'Interview',
         required: true
     },

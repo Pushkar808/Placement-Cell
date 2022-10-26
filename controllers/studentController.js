@@ -86,9 +86,13 @@ module.exports.map = async (req, res) => {
 }
 
 module.exports.showstudent = async (req, res) => {
-    const student_id = req.query.sid;
+    let student_id = req.query.sid;
+    var ObjectId = require('mongoose').Types.ObjectId; 
+    student_id=new ObjectId(student_id);
     console.log(student_id)
-    const data = await ResultSchema.find({ student_id: student_id });
+
+    const data = await ResultSchema.find({student_id: student_id}).populate('interview_id').clone();
+    console.log(data)
     await studentSchema.findById(student_id, (err, sdata) => {
         res.render('student_explore', {
             data: data,

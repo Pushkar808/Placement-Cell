@@ -60,13 +60,17 @@
                     <tr>
                         <th scope="col">Name Of Interview</th>
                         <th scope="col">Current Status</th>
+                        <th scope="col">Goto Interview</th>
+
                     </tr>
                 </thead>
                 <tbody>
                     <% for(interview in data){ %>
                     <tr>
-                            <td>   <%= data[interview].id %>   </td> 
+                        
+                            <td>   <%= data[interview].interview_id.title %>  </td> 
                             <td>   <%= data[interview].result %>   </td>  
+                            <td>   <button onclick="location.href='/interview/showInterview/?number=<%= data[interview].interview_id.id %>'">Expand Interview</button>    </td>
                     </tr>
                     <%}%>
                 </tbody>

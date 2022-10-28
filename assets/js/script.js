@@ -19,6 +19,25 @@ $('#add_interview_container').click(() => {
     });
 })
 
+//to show or hide add interview form
+$('#signup').click(() => {
+    $('#login-form').toggle('slow', () => {
+        if ($('#signup-form').css('display') == "none")
+            $('#signup-form').css('display', 'inline');
+        else
+            $('#signup-form').css('display', 'none');
+    });
+})
+
+$('#login').click(() => {
+    $('#signup-form').toggle('slow', () => {
+        if ($('#login-form').css('display') == "none")
+            $('#login-form').css('display', 'inline');
+        else
+            $('#login-form').css('display', 'none');
+    });
+})
+
 //to hide all dates before today's date
 var today = new Date().toISOString().split('T')[0];
 $("#inter_date").attr('min', today);

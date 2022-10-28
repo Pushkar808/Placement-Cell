@@ -84,5 +84,23 @@ module.exports.csv = async (req, res) => {
 }
 
 module.exports.signup=async (req,res)=>{
-    //add signup code here
+    empSchema.create({
+        name:req.body.name,
+        email:req.body.email,
+        emp_id:req.body.empid,
+        password:req.body.password
+    })
+    res.redirect('back')
+}
+
+module.exports.login=async (req,res)=>{
+    console.log(req.body.email+""+req.body.password)
+    empSchema.find({
+        email:req.body.email,
+        password:req.body.password
+    },(err,data)=>{
+        if(err){console.log("ERROR IN GETTING EMP DATA: "+err); return}
+        console.log(data)
+        res.redirect('back')
+    })
 }

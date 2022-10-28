@@ -46,9 +46,9 @@ module.exports.showInterview = async (req, res) => {//show the interview and res
             console.log("ERROR IN RESSChema" + err);
             return;
         }
-        console.log("data")
+        // console.log("data")
 
-        console.log(data)
+        // console.log(data)
         res.render('interview_explore', {
             data: interview_data,//sending interview schema data
             result: data, //sending result

@@ -43,7 +43,7 @@ module.exports.result = async (req, res) => {
 }
 
 async function createResult(sid, iid) {//function to create new entry for the result model
-    console.log(sid + "" + iid);
+    // console.log(sid + "" + iid);
     await ResultSchema.create({
         interview_id: iid,
         student_id: sid,
@@ -53,7 +53,7 @@ async function createResult(sid, iid) {//function to create new entry for the re
 }
 
 async function updateInterview(iid, sid) {//function to update the interview model
-    console.log(sid + "" + iid);
+    // console.log(sid + "" + iid);
     const doc = await interviewSchema.findOne({ _id: iid })
     // Append items to student_mapped
     doc.student_mapped.push(sid)
@@ -89,10 +89,10 @@ module.exports.showstudent = async (req, res) => {
     let student_id = req.query.sid;
     var ObjectId = require('mongoose').Types.ObjectId; 
     student_id=new ObjectId(student_id);
-    console.log(student_id)
+    // console.log(student_id)
 
     const data = await ResultSchema.find({student_id: student_id}).populate('interview_id').clone();
-    console.log(data)
+    // console.log(data)
     await studentSchema.findById(student_id, (err, sdata) => {
         res.render('student_explore', {
             data: data,

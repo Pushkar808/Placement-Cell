@@ -1,7 +1,7 @@
 const studentSchema = require('../models/student');
 const interviewSchema = require('../models/interview');
 const resultSchema = require('../models/results');
-const empSchema=require('../models/employee')
+const empSchema = require('../models/employee')
 const e = require('express');
 const Result = require('../models/results');
 module.exports.index = (req, res) => {
@@ -83,24 +83,50 @@ module.exports.csv = async (req, res) => {
     }
 }
 
-module.exports.signup=async (req,res)=>{
+module.exports.signup = async (req, res) => {
     empSchema.create({
-        name:req.body.name,
-        email:req.body.email,
-        emp_id:req.body.empid,
-        password:req.body.password
+        name: req.body.name,
+        email: req.body.email,
+        emp_id: req.body.empid,
+        password: req.body.password
     })
     res.redirect('back')
 }
 
-module.exports.login=async (req,res)=>{
-    console.log(req.body.email+""+req.body.password)
+module.exports.login = async (req, res) => {
+    if (req.isAuthenticated()) {
+        res.redirect('/')
+    }
     empSchema.find({
-        email:req.body.email,
-        password:req.body.password
-    },(err,data)=>{
-        if(err){console.log("ERROR IN GETTING EMP DATA: "+err); return}
-        console.log(data)
+        email: req.body.email,
+        password: req.body.password
+    }, (err, data) => {
+        if (err) { console.log("ERROR IN GETTING EMP DATA: " + err); return }
+        // console.log(data)
         res.redirect('back')
+    })
+}
+
+//creating session for a particular user
+
+module.exports.createSession = (req, res) => {
+    console.log("Session created");
+
+    empSchema.findOne({
+        email: req.body.email
+    }, (err, data) => {
+        if (err) { console.log("ERROR IN GETTING EMP DATA: " + err); return }
+        // console.log(data)
+        // res.redirect('back')
+        if (data) {
+            if (req.body.password != data.password)//if password mismatch
+            {
+                console.log("Wrong username/password");
+                return res.render('login');
+            }
+            else
+                res.cookie('user_id', data._id);
+            res.redirect('/');
+        }
     })
 }

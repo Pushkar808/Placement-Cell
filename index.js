@@ -9,7 +9,7 @@ const MongoStore = require('connect-mongo');
 const passportLocal = require('./config/passport');
 const cookieParser = require('cookie-parser');
 
-const port = 8000;//port for server
+const port=process.env.PORT || 8000;//port for server
 const app = express();
 
 app.use(cookieParser())

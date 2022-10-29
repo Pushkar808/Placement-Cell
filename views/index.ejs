@@ -14,16 +14,18 @@
             type="button" role="tab" aria-controls="add-interview" aria-selected="false">Add InterView</button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link" id="view-jobs-tab" data-bs-toggle="tab" data-bs-target="#view-jobs" type="button"
-            role="tab" aria-controls="view-jobs" aria-selected="false">View Jobs</button>
-    </li>
-    <li class="nav-item" role="presentation">
         <button class="nav-link" id="studentlist-tab" data-bs-toggle="tab" data-bs-target="#studentlist" type="button"
             role="tab" aria-controls="studentlist" aria-selected="false">Student List</button>
     </li>
     <li class="nav-item" role="presentation">
-        <button class="nav-link" id="login-signup-tab" data-bs-toggle="tab" data-bs-target="#login-signup" type="button"
-            role="tab" aria-controls="login-signup" aria-selected="false">Login/SignUp</button>
+        <% if(login) {%>
+            <button class="nav-link" id="login-signup-tab" type="button" role="tab" aria-controls="login-signup" aria-selected="false" onclick="location.href='/logout'">Logout</button>      
+
+        <% }else{ %>
+            <button class="nav-link" id="login-signup-tab" data-bs-toggle="tab" data-bs-target="#login-signup" type="button"
+            role="tab" aria-controls="login-signup" aria-selected="false">Login/SignUp</button>      
+        <% } %>
+        
     </li>
 
 </ul>
@@ -42,7 +44,12 @@
         <%- include('student_list') %>
     </div>
     <div class="tab-pane fade" id="login-signup" role="tabpanel" aria-labelledby="login-signup-tab">
-        <%- include('login') %>
+        <% if(login) {%>
+            <a>Logout</a>  
+        <% }else{ %>
+            <%- include('login') %>       
+        <% } %>
+        
     </div>
 
 </div>

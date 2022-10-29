@@ -5,6 +5,14 @@ const empSchema = require('../models/employee')
 const e = require('express');
 const Result = require('../models/results');
 module.exports.index = (req, res) => {
+    
+    if (!req.isAuthenticated()){//if user is already authenticated and had cookie of it then if he goes to signup 
+        //redirect it back to home index.ejs
+        return res.render('login');
+    }
+
+
+
     studentSchema.find({}, (err, studentdata) => {
         if (err) {
             console.log("Some error occured while fetching data for student: " + err);
@@ -55,9 +63,11 @@ module.exports.csv = async (req, res) => {
         // getting all the data from result schema
         const studentdata = await resultSchema.find({}).populate('student_id').populate('interview_id');
         let counter = 1;//to give serial number to the csv file
+        console.log(studentdata)
         studentdata.forEach(async (data) => {
             data.student_id.serial_no = counter;
             counter++;
+            console.log(data.interview_id.title);
             // const adata=data.student_id+data.interview_id
             worksheet.addRow(data.student_id)
             const row = worksheet.lastRow;
@@ -76,7 +86,7 @@ module.exports.csv = async (req, res) => {
 
         return workbook.csv.write(res).then(() => {
             res.status(200)//sending res as 200 i.e request is successfull
-            res.redirect('back')
+            // res.redirect('back')
         })
     } catch (err) {
         console.log(err.message);
@@ -84,6 +94,11 @@ module.exports.csv = async (req, res) => {
 }
 
 module.exports.signup = async (req, res) => {
+    if (req.isAuthenticated()){//if user is already authenticated and had cookie of it then if he goes to signup 
+        //redirect it back to home index.ejs
+        return res.redirect('/');
+    }
+
     empSchema.create({
         name: req.body.name,
         email: req.body.email,
@@ -130,3 +145,11 @@ module.exports.createSession = (req, res) => {
         }
     })
 }
+
+//destroying session i.e signout
+module.exports.destroySession=function(req,res,next){
+    req.logout(function(err) {
+     if (err) { return next(err); }
+     res.redirect('/');//redirecting to index.ejs
+   });
+ }

@@ -141,7 +141,7 @@ module.exports.createSession = (req, res) => {
             }
             else
                 res.cookie('user_id', data._id);
-            res.redirect('/');
+            res.redirect('back');
         }
     })
 }
